@@ -1,47 +1,27 @@
-package activities;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.util.HashSet;
 
-import java.time.Duration;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 public class Activity10 {
-	public static void main(String[] args) {
-     
-        WebDriverManager.firefoxdriver().setup();
-         
-        WebDriver driver = new FirefoxDriver();
-         
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-         
-        driver.get("https://v1.training-support.net/selenium/dynamic-controls");
-         
-        System.out.println("Home page title: " + driver.getTitle());
-
+    public static void main(String[] args) {
+        HashSet<String> hs = new HashSet<String>();
         
-        WebElement checkbox = driver.findElement(By.className("willDisappear"));
-     
-        WebElement checkboxToggle = driver.findElement(By.id("toggleCheckbox"));
-        checkboxToggle.click();
-         
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("willDisappear")));
-        System.out.println("Checkbox is displayed: " + checkbox.isDisplayed());
-   
-        checkboxToggle.click();
-     
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dynamicCheckbox")));
-        System.out.println("Checkbox is displayed: " + checkbox.isDisplayed());
-         
-        driver.findElement(By.xpath("//input[@class='willDisappear']")).click();
+        hs.add("1");
+        hs.add("2");
+        hs.add("3");
+        hs.add("4");
+        hs.add("5");
+        hs.add("6");
 
-   
-        driver.close();
+        System.out.println("Print the size of the hashset: "+hs.size());
+
+        System.out.println("Removing the 4th element here!"+hs.remove("4"));
+
+        System.out.println("Trying to remove an element which is not present in the set!"+hs.remove("7"));
+
+        System.out.println("Checking if the 8 is in the set or not: "+hs.contains("8"));
+
+        for (String str : hs) {
+            System.out.println(str);
+            
+        }
     }
 }

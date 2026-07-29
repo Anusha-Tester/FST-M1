@@ -1,41 +1,27 @@
-package activities;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.util.HashMap;
 
-import java.time.Duration;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 public class Activity11 {
+    public static void main(String[] args) {
+        HashMap<Integer, String> hm = new HashMap<Integer, String>();
+        hm.put(1, "One");
+        hm.put(2, "two");
+        hm.put(3, "three");
+        hm.put(4, "four");
+        hm.put(5, "five");
 
-	public static void main(String[] args) {
-		 
-		WebDriverManager.firefoxdriver().setup();
-        
-        WebDriver driver = new FirefoxDriver();
-         
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        System.out.println("Hashmap: "+hm);
 
-         
-        driver.get("https://v1.training-support.net/selenium/dynamic-controls");
-         
-        System.out.println("Home page title: " + driver.getTitle());
+        hm.remove(3);
 
-         
-        WebElement checkbox = driver.findElement(By.name("toggled"));
-        checkbox.click();
-        System.out.println("Checkbox is selected: " + checkbox.isSelected());
-        
-        checkbox.click();
-        System.out.println("Checkbox is selected: " + checkbox.isSelected());
+        System.out.println("After removing three: "+ hm);
 
-         
-        driver.close();
-	}
+        if(hm.containsValue("five")){
+            System.out.println("five exists in the hashmap");
+        }
+        else{
+            System.out.println("five doesn't exists in the hashmap");
+        }
 
+        System.out.println("Number of pairs in the map is: "+ hm.size());
+    }
 }

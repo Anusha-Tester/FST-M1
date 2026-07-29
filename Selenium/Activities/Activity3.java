@@ -1,37 +1,29 @@
-package activities;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import java.util.Scanner;
 
 public class Activity3 {
-	public static void main(String[] args) {
-	WebDriverManager.firefoxdriver().setup();
-    // Create a new instance of the Firefox driver
-    WebDriver driver = new FirefoxDriver();
-
-    // Open the page
-    driver.get("https://v1.training-support.net/selenium/login-form");
-    // Print the title of the page
-    System.out.println("Home page title: " + driver.getTitle());
-
-    // Find the username field and enter the username
-    driver.findElement(By.xpath("//input[@id='username']")).sendKeys("admin");
-    // Find the password field and enter the password
-    driver.findElement(By.xpath("//input[@id='password']")).sendKeys("password");
-    // Find the login button and click it
-    driver.findElement(By.xpath("//button[text()='Log in']")).click();
-
-    // Print the confirmation message
-    String message = driver.findElement(By.xpath("//div[@id='action-confirmation']")).getText();
-    System.out.println("Login message: " + message);
-
-    // Close the browser
-    driver.close();
+    
+        public static void main(String args[]) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Enter the seconds you lived on till now: ");
+            double seconds = sc.nextInt();
+    
+            double Seconds_on_earth = 31557600;
+            double Seconds_on_mercury = 0.2408467;
+            double Seconds_on_venus = 0.61519726;
+            double Seconds_on_Mars = 1.8808158;
+            double Seconds_on_jupiter = 11.862615;
+            double Seconds_on_Saturn = 29.447498;
+            double Seconds_on_Uranus = 84.016846;
+            double Seconds_on_Neptune = 164.79132;
+            
+            System.out.println("Age on Mercury: " + seconds / Seconds_on_earth / Seconds_on_mercury);
+            System.out.println("Age on Venus: " + seconds / Seconds_on_earth / Seconds_on_venus);
+            System.out.println("Age on Earth: " + seconds / Seconds_on_earth);
+            System.out.println("Age on Mars: " + seconds / Seconds_on_earth / Seconds_on_Mars);
+            System.out.println("Age on Jupiter: " + seconds / Seconds_on_earth / Seconds_on_jupiter);
+            System.out.println("Age on Saturn: " + seconds / Seconds_on_earth / Seconds_on_Saturn);
+            System.out.println("Age on Uranus: " + seconds / Seconds_on_earth / Seconds_on_Uranus);
+            System.out.println("Age on Neptune: " + seconds / Seconds_on_earth / Seconds_on_Neptune);
+        }
+    
 }
-	
-}
-
-
-

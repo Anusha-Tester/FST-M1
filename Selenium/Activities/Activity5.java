@@ -1,41 +1,22 @@
-package activities;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-public class Activity5 {
-	public static void main(String[] args) {
-	WebDriverManager.firefoxdriver().setup();
-    
-    WebDriver driver = new FirefoxDriver();
-    
-    Actions builder = new Actions(driver);
+abstract class Book{
+    String title;
+    abstract void setTitle(String s);
 
-  
-    driver.get("https://v1.training-support.net/selenium/input-events");
-    
-    System.out.println("Home page title: " + driver.getTitle());
+    String getTitle(){
+        return title;
+    }
 
-    
-    builder.click().pause(1000).build().perform();
-
-    String frontText = driver.findElement(By.className("active")).getText();
-    System.out.println(frontText);
-
-   
-    builder.doubleClick().pause(1000).build().perform();
-   
-    frontText = driver.findElement(By.className("active")).getText();
-    System.out.println(frontText);
-
-  
-    builder.contextClick().pause(1000).build().perform();
-    
-    frontText = driver.findElement(By.className("active")).getText();
-    System.out.println(frontText);
-
-    
-    driver.close();
 }
+class MyBook extends Book{
+    public void setTitle(String s){
+        title = s;
+    }
+}
+public class Activity5 {
+    public static void main(String[] args) {
+        String title = "The Fury";
+        Book NewBook = new MyBook();
+        NewBook.setTitle(title);
+        System.out.println("The title of the new book is: "+NewBook.getTitle());
+    }
 }

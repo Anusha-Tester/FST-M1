@@ -1,31 +1,53 @@
-package activities;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+class Plane {
+    private List<String> passengers;
+    private int maximumPassengers;
+    private Date lastTimeTookOf;
+    private Date lastTimeLanded;
+
+    public Plane(int maxPassengers) {
+        this.maximumPassengers = maxPassengers;
+        this.passengers = new ArrayList<>();
+    }
+
+    public void onboard(String passenger) {
+        this.passengers.add(passenger);
+    }
+
+    public Date takeOff() {
+        this.lastTimeTookOf = new Date();
+        return lastTimeTookOf;
+    }
+
+    public void land() {
+        this.lastTimeLanded = new Date();
+        this.passengers.clear();
+    }
+
+    public Date getLastTimeLanded() {
+        return lastTimeLanded;
+    }
+
+    public List<String> getPassengers() {
+        return passengers;
+    }
+}
 
 public class Activity6 {
-	public static void main(String[] args) {
-        
-        WebDriverManager.firefoxdriver().setup();
-        
-        WebDriver driver = new FirefoxDriver();
-      
-        Actions builder = new Actions(driver);
 
-     
-        driver.get("https://v1.training-support.net/selenium/input-events");
-       
-        System.out.println("Home page title: " + driver.getTitle());
-
-        
-        builder.sendKeys("S").build().perform();
-        // Press CTRL+A and CTRL+C
-        builder.keyDown(Keys.CONTROL).sendKeys("a").sendKeys("c").keyUp(Keys.CONTROL).build().perform();
-
-        // Close the browser
-        driver.close();
+    public static void main(String[] args) throws InterruptedException {
+        Plane plane = new Plane(10);
+        plane.onboard("John");
+        plane.onboard("Steve");
+        plane.onboard("Anna");
+        System.out.println("Plane took off at: " + plane.takeOff());
+        System.out.println("People on the plane: " + plane.getPassengers());
+        Thread.sleep(8000);
+        plane.land();
+        System.out.println("Plane landed at: " + plane.getLastTimeLanded());
+        System.out.println("People on the plane after landing: " + plane.getPassengers());
     }
 }

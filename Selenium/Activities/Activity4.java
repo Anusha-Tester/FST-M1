@@ -1,34 +1,25 @@
-package activities;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import java.util.Arrays;
+
 public class Activity4 {
-	public static void main(String[] args) {
-	WebDriverManager.firefoxdriver().setup();
-  
-    WebDriver driver = new FirefoxDriver();
-
-
-    driver.get("https://v1.training-support.net/selenium/target-practice");
-
-    System.out.println("Home page title: " + driver.getTitle());
-
+    static void InsertionSort(int array[]) {
+        int size = array.length, i;
+        
+        for (i = 1; i < size; i++) {
+            int key = array[i];
+            int j = i - 1;
+            
+            while (j >= 0 && key < array[j]) {
+                array[j + 1] = array[j];
+                --j;
+            }
+            array[j + 1] = key;
+        }
+    }
     
-    String thirdHeaderText = driver.findElement(By.xpath("//h3[@id='third-header']")).getText();
-    System.out.println(thirdHeaderText);
-    
-    String fifthHeaderColor = driver.findElement(By.xpath("//h5[text()='Fifth header']")).getCssValue("color");
-    System.out.println(fifthHeaderColor);
-
-   
-    String violetButtonClass = driver.findElement(By.xpath("//button[text()='Violet']")).getAttribute("class");
-    System.out.println(violetButtonClass);
-   
-    String greyButtonText = driver.findElement(By.xpath("//button[text()='Grey']")).getText();
-    System.out.println(greyButtonText);
-
-   
-    driver.close();
-}
+    public static void main(String args[]) {
+        int[] data = { 9, 5, 1, 4, 3 };
+        InsertionSort(data);
+        System.out.println("Sorted Array in Ascending Order: ");
+        System.out.println(Arrays.toString(data));
+    }
 }

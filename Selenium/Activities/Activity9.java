@@ -1,43 +1,25 @@
-package activities;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.util.ArrayList;
 
-import java.time.Duration;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 public class Activity9 {
-	public static void main(String[] args) {
-        // Setup the driver
-        WebDriverManager.firefoxdriver().setup();
-        // Driver object reference
-        WebDriver driver = new FirefoxDriver();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Java");
+        list.add("Python");
+        list.add("C#");
+        list.add("Ruby");
+        list.add("JavaScript");
 
-        // Open the browser
-        driver.get("https://v1.training-support.net/selenium/ajax");
+        System.out.println("Printing all the elements");
+        for (String ele : list) {
+            System.out.println(ele);
+        }
 
-        // Find the button and click it
-        driver.findElement(By.cssSelector("button.violet")).click();
-        // Wait for the new elements to appear
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h1")));
-        // Find and print the new text
-        String text = driver.findElement(By.tagName("h1")).getText();
-        System.out.println(text);
+        System.out.println("Printing the 3rd element in the array list: "+list.get(2));
+        System.out.println("Checking if C++ is in the list: "+list.contains("C++"));
+        System.out.println("The number of names in the list is: "+list.size());
 
-        WebElement delayedText = driver.findElement(By.tagName("h3"));
-        System.out.println(delayedText.getText());
-        // Wait for the delayed text and print it
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h3"), "I'm late!"));
-        String lateText = driver.findElement(By.tagName("h3")).getText();
-        System.out.println(lateText);
+        list.remove("C#");
 
-        // Close the browser
-        driver.quit();
+        System.out.println("Printing the new size of the list: "+list.size());
     }
 }

@@ -1,30 +1,20 @@
-
-package activities;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import java.util.Scanner;
 
 public class Activity1 {
-	public static void main(String[] args) {
-       
-        WebDriverManager.firefoxdriver().setup();
-        
-        WebDriver driver = new FirefoxDriver();
 
-        
-        driver.get("https://v1.training-support.net");
-        
-        System.out.println("Home page title: " + driver.getTitle());
+    public static void main(String[] args){
 
-        
-        driver.findElement(By.id("about-link")).click();
-      
-        System.out.println("About page title: " + driver.getTitle());
+        Car bmw = new Car ();
+        Scanner sc = new Scanner(System.in);
+        bmw.make = 2014;
+        System.out.println("Please Choose a color for your car: ");
+        bmw.color = sc.next();
+        System.out.println("Which Transmission would you ike to buy: ");
+        bmw.transmission = sc.next();
 
-       
-        driver.close();
+        bmw.displayCharacteristics();
+        bmw.accelerate();
+        bmw.brake();
     }
-}
 
+}
